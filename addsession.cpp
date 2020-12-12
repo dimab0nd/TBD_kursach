@@ -88,7 +88,7 @@ void addsession::addNewSession()
     int secs_duration = getFilmDurationById(id_movie);
     int id_multiplier = ui->multiplierBox->currentData().toInt();
 
-    if(secs_duration==-1)
+    if(secs_duration == -1)
     {
         QMessageBox::information(this, "Сообщение", "Ошибка!");
         return;
@@ -134,7 +134,6 @@ void addsession::addNewSession()
         }
         else
             QMessageBox::information(this, "Сообщение", "Успешно!");
-
     }
 
 

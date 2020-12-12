@@ -7,7 +7,10 @@
 #include "catigories.h"
 #include "multiplier.h"
 #include "seats.h"
-#include"addsession.h"
+#include "addsession.h"
+#include "QDateTime"
+#include "QLabel"
+
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
@@ -37,6 +40,10 @@ private slots:
 
     void on_addButton_clicked();
 
+    void refreshSessions();
+
+    void timerEvent(QTimerEvent *evt);
+
 private:
     Ui::MainWindow *ui;
     movies *window1;
@@ -45,6 +52,9 @@ private:
     multiplier *window4;
     seats *window5;
     addsession *window6;
+
+    bool IsSessionsRefresh = false;
+    int timerId;
 
 };
 #endif // MAINWINDOW_H

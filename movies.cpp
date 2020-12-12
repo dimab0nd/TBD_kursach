@@ -8,7 +8,6 @@ movies::movies(QWidget *parent) :
     ui(new Ui::movies)
 {
     ui->setupUi(this);
-
     refreshMovies();
 }
 
