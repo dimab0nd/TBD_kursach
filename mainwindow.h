@@ -7,6 +7,7 @@
 #include "catigories.h"
 #include "multiplier.h"
 #include "seats.h"
+#include"addsession.h"
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
@@ -34,6 +35,8 @@ private slots:
 
     void on_seatsButton_clicked();
 
+    void on_addButton_clicked();
+
 private:
     Ui::MainWindow *ui;
     movies *window1;
@@ -41,6 +44,7 @@ private:
     catigories *window3;
     multiplier *window4;
     seats *window5;
+    addsession *window6;
 
 };
 #endif // MAINWINDOW_H

@@ -19,6 +19,7 @@ seats::~seats()
 {
     delete ui;
 }
+
 void seats::getAllCategories()
 {
     QSqlQuery query;

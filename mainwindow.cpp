@@ -54,3 +54,9 @@ void MainWindow::on_seatsButton_clicked()
     window5 = new seats;
     window5->show();
 }
+
+void MainWindow::on_addButton_clicked()
+{
+    window6 = new addsession;
+    window6->show();
+}

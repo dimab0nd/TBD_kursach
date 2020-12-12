@@ -11,6 +11,7 @@ CONFIG += c++17
 
 SOURCES += \
     addmovie.cpp \
+    addsession.cpp \
     catigories.cpp \
     halls.cpp \
     main.cpp \
@@ -22,6 +23,7 @@ SOURCES += \
 
 HEADERS += \
     addmovie.h \
+    addsession.h \
     catigories.h \
     halls.h \
    mainwindow.h \
@@ -32,6 +34,7 @@ HEADERS += \
 
 FORMS += \
     addmovie.ui \
+    addsession.ui \
     catigories.ui \
     halls.ui \
     mainwindow.ui \
