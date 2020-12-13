@@ -1,5 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include <QSqlError>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -49,8 +50,8 @@ void MainWindow::refreshSessions()
     }
     QSqlQuery query;
     if (!query.exec("SELECT movie.title, session.start_time, halls.name, (q2.s - COALESCE(q1.c, 0)) m FROM session "
-                    "INNER JOIN halls ON sessions.id_hall = halls.id_hall "
-                    "INNER JOIN movie ON sessions.id_movie = movie.id_movie "
+                    "INNER JOIN halls ON session.id_hall = halls.id_hall "
+                    "INNER JOIN movie ON session.id_movie = movie.id_movie "
                     "LEFT JOIN ( "
                     "    SELECT id_session, COUNT(*) c "
                     "    FROM orders GROUP BY id_session "
@@ -60,9 +61,10 @@ void MainWindow::refreshSessions()
                     "    FROM seats GROUP BY id_hall "
                     ") q2 ON session.id_hall = q2.id_hall "
                     "WHERE session.start_time >= '" + sessionTime.toString("yyyy.MM.dd hh:mm:ss") + "' "
-                    "AND (q2.s - COALESCE(q1.c, 0)) != 0"
+                    "AND (q2.s - COALESCE(q1.c, 0)) != 0 "
                     "ORDER BY session.start_time ASC ")) {
         qDebug() << "Ошибка вывода сеансов!";
+        qDebug() << "SQL error:" << query.lastError().text() << ", SQL error code:" << query.lastError().number();
         return;
     };
 
