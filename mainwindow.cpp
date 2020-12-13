@@ -48,7 +48,6 @@ void MainWindow::refreshSessions()
     ui->tableWidget->clear();
     int j = ui->tableWidget->rowCount();
     for (int i = 0; i < j; i++) {
-        qDebug() << ui->tableWidget->rowAt(0);
         ui->tableWidget->removeRow(0);
     }
     QSqlQuery query;
@@ -95,6 +94,8 @@ void MainWindow::refreshSessions()
         free_seats->setText(query.value(3).toString());
         id_session->setText(query.value(4).toString());
 
+        QDateTime tmp = QDateTime::fromString(start_time->text(), Qt::ISODateWithMs);
+        start_time->setText(tmp.time().toString("HH:mm:ss"));
         ui->tableWidget->setItem(rowCount, 0, title);
         ui->tableWidget->setItem(rowCount, 1, start_time);
         ui->tableWidget->setItem(rowCount, 2, session);
