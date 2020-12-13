@@ -114,7 +114,19 @@ void seats::on_tableWidget_itemChanged(QTableWidgetItem *item)
 
 void seats::on_deleteButton_clicked()
 {
+    int row = ui->tableWidget->currentRow();
 
+    QString id = ui->tableWidget->item(row, 4)->text();
+    QSqlQuery query;
+    if (!query.exec("delete from seats where id_seat = " + id))
+    {
+        QMessageBox::information(this, "Сообщение", "Произошла ошибка при удалении: " + id);
+        return;
+    }
+    else
+        QMessageBox::information(this, "Сообщение", "Удалено сиденье id: " + id);
+    QString id_hall = ui->tableWidget->item(row, 0)->text();
+    refreshSeats(id_hall);
 }
 
 void seats::on_hallsBox_currentIndexChanged(int index)

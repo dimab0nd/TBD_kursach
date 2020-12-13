@@ -178,7 +178,7 @@ void MainWindow::on_deleteButton_clicked()
             QMessageBox::information(this, "Сообщение", "Произошла ошибка при удалении: " + id);
         }
         else
-            QMessageBox::information(this, "Сообщение", "Удален зал id: " + id);
+            QMessageBox::information(this, "Сообщение", "Удален сеанс id: " + id);
         refreshSessions();
     }
 
