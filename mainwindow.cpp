@@ -36,11 +36,14 @@ void MainWindow::refreshSessions()
     //IsSessionsRefresh = true;
 
     QDateTime sessionTime;
+    QDateTime sessionTime2;
     if (ui->dateEdit->date() == QDate::currentDate()) {
         sessionTime = QDateTime::currentDateTime();
     } else {
         sessionTime.setDate(ui->dateEdit->date());
     }
+    sessionTime2.setDate(sessionTime.date());
+    sessionTime2.setTime(QTime(23, 59, 59, 999));
 
     ui->tableWidget->clear();
     int j = ui->tableWidget->rowCount();
@@ -61,6 +64,7 @@ void MainWindow::refreshSessions()
                     "    FROM seats GROUP BY id_hall "
                     ") q2 ON session.id_hall = q2.id_hall "
                     "WHERE session.start_time >= '" + sessionTime.toString("yyyy.MM.dd hh:mm:ss") + "' "
+                    "AND session.start_time <= '" + sessionTime2.toString("yyyy.MM.dd hh:mm:ss") + "' "
                     "AND (q2.s - COALESCE(q1.c, 0)) != 0 "
                     "ORDER BY session.start_time ASC ")) {
         qDebug() << "Ошибка вывода сеансов!";
