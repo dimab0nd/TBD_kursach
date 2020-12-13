@@ -24,7 +24,6 @@ public:
 
     void refreshMovies();
 
-
 private slots:
 
     void on_addButton_clicked();

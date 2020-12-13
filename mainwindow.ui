@@ -6,19 +6,44 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>896</width>
-    <height>450</height>
+    <width>747</width>
+    <height>452</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Сеансы</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <layout class="QVBoxLayout" name="verticalLayout_5">
+   <layout class="QVBoxLayout" name="verticalLayout_6">
     <item>
      <layout class="QHBoxLayout" name="horizontalLayout_2">
       <item>
-       <widget class="QTableWidget" name="tableWidget"/>
+       <layout class="QVBoxLayout" name="verticalLayout_5">
+        <item>
+         <widget class="QDateEdit" name="dateEdit">
+          <property name="minimumDate">
+           <date>
+            <year>2020</year>
+            <month>1</month>
+            <day>1</day>
+           </date>
+          </property>
+          <property name="calendarPopup">
+           <bool>true</bool>
+          </property>
+          <property name="date">
+           <date>
+            <year>2020</year>
+            <month>12</month>
+            <day>12</day>
+           </date>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QTableWidget" name="tableWidget"/>
+        </item>
+       </layout>
       </item>
       <item>
        <layout class="QVBoxLayout" name="verticalLayout_4">
@@ -256,8 +281,8 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>896</width>
-     <height>21</height>
+     <width>747</width>
+     <height>20</height>
     </rect>
    </property>
    <widget class="QMenu" name="menu">

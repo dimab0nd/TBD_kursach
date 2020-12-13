@@ -23,6 +23,8 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+    void refreshSessions();
+
 private slots:
     void on_buyButton_clicked();
 
@@ -40,9 +42,9 @@ private slots:
 
     void on_addButton_clicked();
 
-    void refreshSessions();
-
     void timerEvent(QTimerEvent *evt);
+
+    void on_dateEdit_dateChanged(const QDate &date);
 
 private:
     Ui::MainWindow *ui;
@@ -53,7 +55,7 @@ private:
     seats *window5;
     addsession *window6;
 
-    bool IsSessionsRefresh = false;
+    //bool IsSessionsRefresh = false;
     int timerId;
 
 };
