@@ -48,7 +48,7 @@ void MainWindow::refreshSessions()
         ui->tableWidget->removeRow(0);
     }
     QSqlQuery query;
-    if (!query.exec("SELECT movie.title, session.start_time, halls.name FROM session "
+    if (!query.exec("SELECT movie.title, session.start_time, halls.name, (q2.s - COALESCE(q1.c, 0)) m FROM session "
                     "INNER JOIN halls ON sessions.id_hall = halls.id_hall "
                     "INNER JOIN movie ON sessions.id_movie = movie.id_movie "
                     "LEFT JOIN ( "
@@ -59,11 +59,11 @@ void MainWindow::refreshSessions()
                     "    SELECT id_hall, COUNT(*) s "
                     "    FROM seats GROUP BY id_hall "
                     ") q2 ON session.id_hall = q2.id_hall "
-                    "WHERE session.start_time >= '" + sessionTime.toString() + "' "
+                    "WHERE session.start_time >= '" + sessionTime.toString("yyyy.MM.dd hh:mm:ss") + "' "
                     "AND (q2.s - COALESCE(q1.c, 0)) != 0"
                     "ORDER BY session.start_time ASC ")) {
         qDebug() << "Ошибка вывода сеансов!";
-        //return;
+        return;
     };
 
     ui->tableWidget->setColumnCount(4);
