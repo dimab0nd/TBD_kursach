@@ -46,6 +46,10 @@ private slots:
 
     void on_dateEdit_dateChanged(const QDate &date);
 
+    void on_deleteButton_clicked();
+
+    void on_refreshButton_clicked();
+
 private:
     Ui::MainWindow *ui;
     movies *window1;

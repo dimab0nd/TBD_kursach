@@ -6,6 +6,7 @@ addsession::addsession(QWidget *parent) :
     ui(new Ui::addsession)
 {
     ui->setupUi(this);
+    ui->dateTimeEdit->setMinimumDate(QDate::currentDate());
     getFilms();
     getHalls();
     getMultipliers();

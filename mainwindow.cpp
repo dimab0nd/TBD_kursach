@@ -52,7 +52,7 @@ void MainWindow::refreshSessions()
         ui->tableWidget->removeRow(0);
     }
     QSqlQuery query;
-    if (!query.exec("SELECT movie.title, session.start_time, halls.name, (q2.s - COALESCE(q1.c, 0)) m FROM session "
+    if (!query.exec("SELECT movie.title, session.start_time, halls.name, (q2.s - COALESCE(q1.c, 0)) m, session.id_session FROM session "
                     "INNER JOIN halls ON session.id_hall = halls.id_hall "
                     "INNER JOIN movie ON session.id_movie = movie.id_movie "
                     "LEFT JOIN ( "
@@ -72,7 +72,7 @@ void MainWindow::refreshSessions()
         return;
     };
 
-    ui->tableWidget->setColumnCount(4);
+    ui->tableWidget->setColumnCount(5);
     QStringList labels;
     labels << "Фильм" << "Начало" << "Зал" << "Осталось мест";
     ui->tableWidget->setHorizontalHeaderLabels(labels);
@@ -86,18 +86,24 @@ void MainWindow::refreshSessions()
         QTableWidgetItem *start_time = new QTableWidgetItem;
         QTableWidgetItem *session = new QTableWidgetItem;
         QTableWidgetItem *free_seats = new QTableWidgetItem;
+        QTableWidgetItem *id_session = new QTableWidgetItem;
+
 
         title->setText(query.value(0).toString());
         start_time->setText(query.value(1).toString());
         session->setText(query.value(2).toString());
         free_seats->setText(query.value(3).toString());
+        id_session->setText(query.value(4).toString());
 
         ui->tableWidget->setItem(rowCount, 0, title);
         ui->tableWidget->setItem(rowCount, 1, start_time);
         ui->tableWidget->setItem(rowCount, 2, session);
         ui->tableWidget->setItem(rowCount, 3, free_seats);
+        ui->tableWidget->setItem(rowCount, 4, id_session);
+
         rowCount++;
     }
+    ui->tableWidget->setColumnHidden(4,true);
 
     //IsSessionsRefresh = false;
 }
@@ -152,6 +158,35 @@ void MainWindow::on_addButton_clicked()
 
 
 void MainWindow::on_dateEdit_dateChanged(const QDate &date)
+{
+    refreshSessions();
+}
+
+void MainWindow::on_deleteButton_clicked()
+{
+    QMessageBox *msgBox = new QMessageBox(QMessageBox::Information,"Удаление сеанса","Are you sure?",
+                                          QMessageBox::Yes| QMessageBox::Cancel);
+
+    if(msgBox->exec() == QMessageBox::Yes)
+    {
+        int row = ui->tableWidget->currentRow();
+
+        QString id = ui->tableWidget->item(row, 4)->text();
+        QSqlQuery query;
+        if (!query.exec("delete from session where id_session = " + id))
+        {
+            QMessageBox::information(this, "Сообщение", "Произошла ошибка при удалении: " + id);
+        }
+        else
+            QMessageBox::information(this, "Сообщение", "Удален зал id: " + id);
+        refreshSessions();
+    }
+
+    delete msgBox;
+
+}
+
+void MainWindow::on_refreshButton_clicked()
 {
     refreshSessions();
 }
