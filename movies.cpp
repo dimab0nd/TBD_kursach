@@ -19,7 +19,6 @@ movies::~movies()
 void movies::refreshMovies()
 {
     IsRefresh = true;
-    //auto ui = getInstance()->ui;
 
     ui->tableWidget->clear();
     int j = ui->tableWidget->rowCount();
@@ -28,7 +27,9 @@ void movies::refreshMovies()
         ui->tableWidget->removeRow(0);
     }
     QSqlQuery query;
-    if (!query.exec("SELECT * from movie ORDER BY title ASC")) {
+    if (!query.exec("SELECT * from movie "
+                    "WHERE title ILIKE '" + ui->lineEdit->text() + "%' "
+                    "ORDER BY title ASC")) {
         qDebug() << "Ошибка вывода фильмов!";
         return;
     };
@@ -70,18 +71,9 @@ void movies::refreshMovies()
     IsRefresh = false;
 }
 
-//movies *movies::getInstance()
-//{
-//    if (instance == nullptr) {
-//        instance = new movies;
-//    }
-//    return instance;
-//}
-
 void movies::on_addButton_clicked()
 {
     window1 = new addMovie;
-    //window1->setCallback(&movies::refreshMovies);
     window1->exec();
     refreshMovies();
 }
@@ -124,4 +116,9 @@ void movies::on_deleteButton_clicked()
     QMessageBox::information(this, "Сообщение", "Удален фильм id: " + id_movie);
     refreshMovies();
 
+}
+
+void movies::on_lineEdit_textChanged(const QString &arg1)
+{
+    refreshMovies();
 }
