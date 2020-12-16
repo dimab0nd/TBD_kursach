@@ -10,6 +10,7 @@
 #include "addsession.h"
 #include "QDateTime"
 #include "QLabel"
+#include "ticket.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -58,6 +59,7 @@ private:
     multiplier *window4;
     seats *window5;
     addsession *window6;
+    ticket *window7;
 
     //bool IsSessionsRefresh = false;
     int timerId;

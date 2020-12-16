@@ -11,104 +11,78 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Залы</string>
+   <string>Новый билет</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
     <layout class="QVBoxLayout" name="verticalLayout_4">
      <item>
-      <widget class="QLabel" name="label">
+      <widget class="QLabel" name="sessionlabel">
        <property name="text">
-        <string>Сеанс:</string>
+        <string>Сеанс: </string>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="QLabel" name="label_8">
+      <widget class="QLabel" name="timelabel">
        <property name="text">
-        <string>Время:</string>
+        <string>Время: </string>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="QLabel" name="label_2">
+      <widget class="QLabel" name="halllabel">
        <property name="text">
-        <string>Зал:</string>
+        <string>Зал: </string>
        </property>
       </widget>
      </item>
      <item>
-      <layout class="QHBoxLayout" name="horizontalLayout">
-       <item>
+      <layout class="QFormLayout" name="formLayout">
+       <item row="0" column="0">
         <widget class="QLabel" name="label_3">
          <property name="text">
           <string>Ряд:</string>
          </property>
         </widget>
        </item>
-       <item>
-        <widget class="QComboBox" name="comboBox"/>
-       </item>
-       <item>
-        <spacer name="horizontalSpacer_2">
-         <property name="orientation">
-          <enum>Qt::Horizontal</enum>
-         </property>
-         <property name="sizeHint" stdset="0">
-          <size>
-           <width>40</width>
-           <height>20</height>
-          </size>
-         </property>
-        </spacer>
+       <item row="0" column="1">
+        <widget class="QComboBox" name="rowsBox"/>
        </item>
       </layout>
      </item>
      <item>
-      <layout class="QHBoxLayout" name="horizontalLayout_2">
-       <item>
+      <layout class="QFormLayout" name="formLayout_2">
+       <item row="0" column="0">
         <widget class="QLabel" name="label_4">
          <property name="text">
           <string>Место:</string>
          </property>
         </widget>
        </item>
-       <item>
-        <widget class="QComboBox" name="comboBox_2"/>
-       </item>
-       <item>
-        <spacer name="horizontalSpacer_3">
-         <property name="orientation">
-          <enum>Qt::Horizontal</enum>
-         </property>
-         <property name="sizeHint" stdset="0">
-          <size>
-           <width>40</width>
-           <height>20</height>
-          </size>
-         </property>
-        </spacer>
+       <item row="0" column="1">
+        <widget class="QComboBox" name="seatsBox"/>
        </item>
       </layout>
      </item>
      <item>
-      <widget class="QLabel" name="label_5">
+      <widget class="QLabel" name="categorylabel">
        <property name="text">
-        <string>Тип места:</string>
+        <string>Тип места: </string>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="QLabel" name="label_7">
+      <widget class="QLabel" name="multiplierlabel">
        <property name="text">
-        <string>Multiplier</string>
+        <string>Multiplier: </string>
        </property>
       </widget>
      </item>
     </layout>
    </item>
    <item>
-    <widget class="QLabel" name="label_6">
+    <widget class="QLabel" name="summlabel">
      <property name="text">
       <string>Итого:</string>
      </property>
@@ -117,7 +91,7 @@
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout_3">
      <item>
-      <widget class="QPushButton" name="pushButton">
+      <widget class="QPushButton" name="acceptButton">
        <property name="text">
         <string>Оформить</string>
        </property>

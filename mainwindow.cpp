@@ -111,6 +111,14 @@ void MainWindow::refreshSessions()
 
 void MainWindow::on_buyButton_clicked()
 {
+    int current_row = ui->tableWidget->currentRow();
+    //QMessageBox::information(this, "Сообщение", "Строка: " + QString::number(current_row));
+    if(current_row >= 0)
+    {
+        QString id_session = ui->tableWidget->item(current_row, 4)->text();
+        window7 = new ticket(NULL,id_session.toInt());
+        window7->show();
+    }
 
 }
 

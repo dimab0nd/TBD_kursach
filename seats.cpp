@@ -137,7 +137,6 @@ void seats::on_hallsBox_currentIndexChanged(int index)
         refreshSeats(id_hall);
 //        QMessageBox::information(this, "Сообщение", "Выбран id: " + id_hall);
     }
-
 }
 
 void seats::on_pushButton_clicked()

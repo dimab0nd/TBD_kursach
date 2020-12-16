@@ -44,7 +44,6 @@ void addsession::getFilms()
     {
         QString title = query.value(1).toString() + " (" +query.value(2).toString()+ ")";
         ui->filmsBox->insertItem(0,title,query.value(0).toInt());
-        //Categories[query.value(0).toInt()] = query.value(1).toString();
     }
     FilmsRefresh = false;
 }
