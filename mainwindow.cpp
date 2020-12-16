@@ -163,10 +163,11 @@ void MainWindow::on_dateEdit_dateChanged(const QDate &date)
     refreshSessions();
 }
 
+
 void MainWindow::on_deleteButton_clicked()
 {
-    QMessageBox *msgBox = new QMessageBox(QMessageBox::Information,"Удаление сеанса","Are you sure?",
-                                          QMessageBox::Yes| QMessageBox::Cancel);
+    QMessageBox *msgBox = new QMessageBox(QMessageBox::Information,"Удаление сеанса","Вы уверены??",
+                                          QMessageBox::Yes| QMessageBox::No);
 
     if(msgBox->exec() == QMessageBox::Yes)
     {
@@ -184,8 +185,8 @@ void MainWindow::on_deleteButton_clicked()
     }
 
     delete msgBox;
-
 }
+
 
 void MainWindow::on_refreshButton_clicked()
 {

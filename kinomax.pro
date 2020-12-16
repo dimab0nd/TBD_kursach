@@ -19,7 +19,8 @@ SOURCES += \
     movies.cpp \
     autorization.cpp \
     multiplier.cpp \
-    seats.cpp
+    seats.cpp \
+    ticket.cpp
 
 HEADERS += \
     addmovie.h \
@@ -30,7 +31,8 @@ HEADERS += \
     movies.h \
     autorization.h \
     multiplier.h \
-    seats.h
+    seats.h \
+    ticket.h
 
 FORMS += \
     addmovie.ui \
@@ -41,7 +43,8 @@ FORMS += \
     movies.ui \
     autorization.ui \
     multiplier.ui \
-    seats.ui
+    seats.ui \
+    ticket.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
