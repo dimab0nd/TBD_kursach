@@ -11,6 +11,7 @@
 #include "QDateTime"
 #include "QLabel"
 #include "ticket.h"
+#include "refund.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -60,6 +61,8 @@ private:
     seats *window5;
     addsession *window6;
     ticket *window7;
+    refund *window8;
+
 
     //bool IsSessionsRefresh = false;
     int timerId;

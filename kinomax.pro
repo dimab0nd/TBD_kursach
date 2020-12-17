@@ -19,6 +19,7 @@ SOURCES += \
     movies.cpp \
     autorization.cpp \
     multiplier.cpp \
+    refund.cpp \
     seats.cpp \
     ticket.cpp
 
@@ -31,6 +32,7 @@ HEADERS += \
     movies.h \
     autorization.h \
     multiplier.h \
+    refund.h \
     seats.h \
     ticket.h
 
@@ -43,6 +45,7 @@ FORMS += \
     movies.ui \
     autorization.ui \
     multiplier.ui \
+    refund.ui \
     seats.ui \
     ticket.ui
 

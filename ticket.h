@@ -7,6 +7,8 @@
 #include <QDebug>
 #include <QMessageBox>
 #include <QCryptographicHash>
+#include "QDateTime"
+#include <QSqlError>
 
 namespace Ui {
 class ticket;

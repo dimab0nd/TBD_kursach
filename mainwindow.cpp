@@ -119,12 +119,17 @@ void MainWindow::on_buyButton_clicked()
         window7 = new ticket(NULL,id_session.toInt());
         window7->show();
     }
+    else
+    {
+        QMessageBox::information(this, "Сообщение", "Вы не выбрали сеанс!");
+    }
 
 }
 
 void MainWindow::on_refundButton_clicked()
 {
-
+    window8 = new refund;
+    window8->show();
 }
 
 

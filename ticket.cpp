@@ -44,7 +44,12 @@ void ticket::getAllInfoBySessionId(const int &id_session)
         QString multiplier = ui->multiplierlabel->text() + query.value(5).toString() + " (x" + query.value(6).toString() +")";
         ui->multiplierlabel->setText(multiplier);
 
-        QString time = ui->timelabel->text() + query.value(3).toString() + " - " + query.value(4).toString();
+        QDateTime tmp = QDateTime::fromString(query.value(3).toString(), Qt::ISODateWithMs);
+        QString start_time = tmp.time().toString("HH:mm:ss");
+        tmp = QDateTime::fromString(query.value(4).toString(), Qt::ISODateWithMs);
+        QString end_time = tmp.time().toString("HH:mm:ss");
+
+        QString time = ui->timelabel->text() + start_time + " - " + end_time;
         ui->timelabel->setText(time);
     }
     else
@@ -71,7 +76,7 @@ void ticket::getAllRowsBySessionId(const int &id_session)
     {
         ui->rowsBox->insertItem(0,query.value(0).toString(), query.value(0).toInt());
     }
-    ui->rowsBox->setCurrentIndex(0);
+    ui->rowsBox->setCurrentIndex(-1);
     isRefresh = false;
 }
 
@@ -84,12 +89,21 @@ void ticket:: getAllSeatsByRow(const int &row_number)
     ui->seatsBox->clear();
     QSqlQuery query;
     if (!query.exec("select id_seat, number"
-                    " from seats"
-                    " inner join halls h on h.id_hall = seats.id_hall"
+                    " from seats t1"
+                    " inner join halls h on h.id_hall = t1.id_hall"
                     " inner join session s on h.id_hall = s.id_hall"
-                    " where id_session = "+session+
-                    " and row = "+row)) {
+                    " where s.id_session = "+session+
+                    " and t1.row = "+row+
+                    " and not exists "
+                    " ("
+                            " select o.id_order"
+                            " from orders o"
+                            " left join refunds r on o.id_order = r.id_order"
+                            " where id_session = s.id_session and id_seat = t1.id_seat"
+                            " and id_refunds is null"
+                    " )")) {
         QMessageBox::information(this, "Сообщение", "Ошибка getAllSeatsByRow!");
+        //qDebug() << "SQL error:" << query.lastError().text() << ", SQL error code:" << query.lastError().number();
         return;
     };
 
