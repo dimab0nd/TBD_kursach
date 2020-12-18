@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Dialog</string>
+   <string>Оформление возврата</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout_2">
    <item>
@@ -46,7 +46,7 @@
      <item>
       <widget class="QPushButton" name="acceptButton">
        <property name="text">
-        <string>Refund</string>
+        <string>Оформить возврат</string>
        </property>
       </widget>
      </item>
