@@ -18,6 +18,9 @@ public:
     explicit refund(QWidget *parent = nullptr);
     ~refund();
 
+    int getOrderIdByHash(const QString &hash);
+
+
 private slots:
     void on_acceptButton_clicked();
 
