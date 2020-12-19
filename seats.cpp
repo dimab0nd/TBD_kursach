@@ -139,23 +139,56 @@ void seats::on_hallsBox_currentIndexChanged(int index)
     }
 }
 
+
+int seats:: getLastSeatNumber(const int &id_hall, const int &row)
+{
+    QString row_number = QString::number(row);
+    QString hall = QString::number(id_hall);
+
+
+    QSqlQuery query;
+    if (!query.exec("select max(number)"
+                    " from seats"
+                    " where id_hall = "+hall+" and row = "+ row_number+
+                    " group by id_hall, row")) {
+        QMessageBox::information(this, "Сообщение", "Ошибка getLastSeatNumber!");
+        return 0;
+    };
+    if(query.first())
+    {
+        int result = query.value(0).toInt();
+
+        return result;
+
+    }
+    else return 0;
+}
+
+
 void seats::on_pushButton_clicked()
 {
     QString id_hall = ui->hallsBox->currentData().toString();
     QString row = ui->row_number->text();
+
+    int crawler = getLastSeatNumber(ui->hallsBox->currentData().toInt() ,ui->row_number->text().toInt());
+    crawler++;
+
     int seats_count = ui->seats_count->text().toInt();
+    seats_count+= crawler;
+
     QString id_category = ui->categoryBox->currentData().toString();
 
     QSqlQuery query;
-    for(int i = 1; i <= seats_count;i++)
+    for( ; crawler < seats_count; crawler++)
     {
         if (!query.exec(
                 "insert into seats (number, row, id_hall, id_category)"
-                "values ("+ QString::number(i) +", "+ row +", "+ id_hall +", "+ id_category +")"))
+                "values (" + QString::number(crawler) +", " + row + ", "+ id_hall + ", " + id_category + ")"))
         {
             QMessageBox::information(this, "Сообщение", "Ошибка!");
             return;
         };
     }
+
     refreshSeats(id_hall);
 }

@@ -31,6 +31,7 @@ int addsession::getFilmDurationById(const int &film_id)
 
 }
 
+
 void addsession::getFilms()
 {
     FilmsRefresh = true;
@@ -47,6 +48,8 @@ void addsession::getFilms()
     }
     FilmsRefresh = false;
 }
+
+
 void addsession::getHalls()
 {
     QSqlQuery query;
@@ -59,6 +62,8 @@ void addsession::getHalls()
         ui->hallsBox->insertItem(0,query.value(1).toString() ,query.value(0).toInt());
     }
 }
+
+
 void addsession::getMultipliers()
 {
     QSqlQuery query;
@@ -73,10 +78,16 @@ void addsession::getMultipliers()
     }
 
 }
+
+
+
 addsession::~addsession()
 {
     delete ui;
 }
+
+
+
 void addsession::addNewSession()
 {
     QSqlQuery query;
@@ -84,6 +95,7 @@ void addsession::addNewSession()
 
     QString id_hall = ui->hallsBox->currentData().toString();
     QDateTime newDateTime = ui->dateTimeEdit->dateTime();
+
     int id_movie = ui->filmsBox->currentData().toInt();
     int secs_duration = getFilmDurationById(id_movie);
     int id_multiplier = ui->multiplierBox->currentData().toInt();
@@ -135,10 +147,9 @@ void addsession::addNewSession()
         else
             QMessageBox::information(this, "Сообщение", "Успешно!");
     }
-
-
-
 }
+
+
 void addsession::on_addButton_clicked()
 {
     //QMessageBox::information(this, "Сообщение", ui->dateTimeEdit->dateTime().toString("dd.MM.yyyy hh:mm"));

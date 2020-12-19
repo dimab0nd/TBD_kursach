@@ -140,7 +140,6 @@ void ticket::getCategoryBySeatId(const int &id_seat)
 }
 
 
-
 int ticket::calculateSumm(const int &id_seat)
 {
     QString session = QString::number(this->id_session);
@@ -186,6 +185,7 @@ void ticket::on_rowsBox_currentIndexChanged(int index)
 
 }
 
+
 void ticket::on_seatsBox_currentIndexChanged(int index)
 {
     if(!isRefresh)
@@ -196,6 +196,7 @@ void ticket::on_seatsBox_currentIndexChanged(int index)
     }
 
 }
+
 
 void ticket::on_acceptButton_clicked()
 {
@@ -211,7 +212,6 @@ void ticket::on_acceptButton_clicked()
     std::string tmp = std::to_string(session)+std::to_string(id_seat);
 
     QString hash = QString(QCryptographicHash::hash((QByteArray::fromStdString(tmp)),QCryptographicHash::Md5).toHex());
-
 
 
     query.bindValue(":id_session", session);

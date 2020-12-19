@@ -38,6 +38,7 @@ private slots:
     void on_hallsBox_currentIndexChanged(int index);
 
     void on_pushButton_clicked();
+    int getLastSeatNumber(const int &id_hall, const int &row);
 
 private:
     Ui::seats *ui;

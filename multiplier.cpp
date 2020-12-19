@@ -93,7 +93,6 @@ void multiplier::on_tableWidget_itemChanged(QTableWidgetItem *item)
         else
             QMessageBox::information(this, "Сообщение", "Изменения применены!");
 
-
     }
 }
 
@@ -110,6 +109,7 @@ void multiplier::on_deleteButton_clicked()
     }
     else
         QMessageBox::information(this, "Сообщение", "Вы удалили id: " + id);
+
     refreshMultiplier();
 
 }
